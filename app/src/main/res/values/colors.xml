@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#E7011A</color>
+    <color name="red_welcom_text_color">#D13631</color>
+    <color name="red_distributor_color">#E61524</color>
+    <color name="forgot_label_color">#C9C9C9</color>
+    <color name="color_white">@android:color/white</color>
+    <color name="color_yellow">#FFFFEB3B</color>
+    <color name="color_black">#421010</color>
+    <color name="text_dark">#414141</color>
+    <color name="distributor_grey">#FFE6E6E6</color>
+</resources>

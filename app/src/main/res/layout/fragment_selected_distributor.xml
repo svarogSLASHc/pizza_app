@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.treewall.av.pizzaapp.presentation.distributor.SelectedDistributorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <include
+            layout="@layout/layout_view_back"
+            app:backListener="@{viewModel}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/distributor_title_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/map_distributor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Luca" />
+
+        <fragment
+            android:id="@+id/map_distributor"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/return_margin_top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/address_section"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back"
+            app:liteMode="true"
+            app:mapType="normal"
+            tools:context=".MapsActivity" />
+
+        <FrameLayout
+            android:id="@+id/address_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/order_type"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/distributor_btn_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="20dp"
+                android:paddingBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@id/order_type"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.address}"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/distributor_address_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="19 Rue de la République" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.distance}"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/distributor_distance_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2,2 km" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/order_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:paddingTop="@dimen/distributor_padding"
+            android:paddingBottom="@dimen/distributor_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/take_away"
+                android:layout_width="@dimen/distributor_btn_width"
+                android:layout_height="@dimen/distributor_btn_height"
+                android:background="@drawable/distributor_btn_bg_stroke_red"
+                android:drawableStart="@drawable/ic_take_away_icon"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onTakeAwayClick()}"
+                android:paddingStart="@dimen/distributor_btn_padding_start"
+                android:text="@string/take_away"
+                android:textColor="@color/red_distributor_color"
+                android:textSize="@dimen/distributor_btn_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/delivery"
+                android:layout_width="@dimen/distributor_btn_width"
+                android:layout_height="@dimen/distributor_btn_height"
+                android:layout_marginTop="@dimen/distributor_padding"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/distributor_btn_bg_red"
+                android:drawableStart="@drawable/ic_delivery_stuart"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/distributor_btn_padding_start"
+                android:text="@string/delivery"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/distributor_btn_text_size"
+                app:layout_constraintBottom_toTopOf="@+id/take_away"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

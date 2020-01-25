@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PizzaApp</string>
+    <string name="welcome_to_sign_up">S’inscrire</string>
+    <string name="welcome_to_login">SE CONNECTER</string>
+    <string name="welcome_description">Votre pizza fraîche 24/7, livrée ou emportée.</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">Se connecter</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+    <string name="or">OU</string>
+    <string name="forgot_description">Veuillez entrer votre mail ci-dessous. Vous recevrez un lien par mail pour réinitialiser votre mot de passe.</string>
+    <string name="forgot_btn_text">Réinitialiser</string>
+    <string name="forgot_dialog_title">Votre demande de réinitialisation a bien été prise en compte !</string>
+    <string name="forgot_dialog_text">Suivez les instructions reçues par mail pour mettre à jour votre mot de passe.</string>
+    <string name="forgot_dialog_btn">Se connecter</string>
+    <string name="name">Prénom et nom</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="error_email_invalid">Enter valid email address</string>
+    <string name="error_email_empty">Please enter email</string>
+    <string name="error_password_invalid">Password must contain at least 8 characters: lowercase characters, uppercase characters and digits</string>
+    <string name="error_confirm_password_empty">Please enter confirmation password</string>
+    <string name="error_passwords_not_same">Passwords are not same</string>
+    <string name="error_name_empty">Please enter name</string>
+    <string name="map_view_location_permission_title">Location permission</string>
+    <string name="map_view_location_permission_description">We need access to your location to be able to load nearest pizza machines and show them on map.</string>
+    <string name="take_away">À EMPORTER</string>
+    <string name="delivery">LIVRAISON</string>
+    <string name="add">AJOUTER</string>
+    <string name="product_type_pizza">PIZZA</string>
+</resources>

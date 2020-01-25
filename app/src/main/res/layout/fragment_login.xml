@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.treewall.av.pizzaapp.presentation.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/space_single"
+                android:paddingEnd="@dimen/space_single"
+                android:paddingBottom="54dp">
+
+                <ImageView
+                    android:id="@+id/welcome_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/welcome_space_logo_top"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_pizza_main" />
+
+                <TextView
+                    android:id="@+id/welcome_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_description"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/welcome_description_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/welcome_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/auth_text_field_side_space" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/auth_text_field_side_space" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_line"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:layout_marginTop="@dimen/space_single"
+                    android:hint="@string/email"
+                    app:errorRes="@{viewModel.emailError}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/welcome_logo">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_mail"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_line"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:hint="@string/password"
+                    app:errorRes="@{viewModel.passwordError }"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/login_line"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/color_white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/welcome_to_login"
+                    style="@style/WelcomeButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="@dimen/input_text_start_margin"
+                    android:background="@drawable/welcome_btn_bg_white"
+                    android:onClick="@{() -> viewModel.login(login.getText().toString(), password.getText().toString())}"
+                    android:text="@string/login"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/auth_button_text_size"
+                    android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/password_line" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="@dimen/progress_bar_size"
+                    android:layout_height="@dimen/progress_bar_size"
+                    android:layout_marginTop="@dimen/input_text_start_margin"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@android:color/white"
+                    android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/password_line" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="welcome_to_login,progress" />
+
+                <TextView
+                    android:id="@+id/login_forgot_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/login_forgot_top_margin"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.forgotClick()}"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/forgot_label_color"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+                <TextView
+                    android:id="@+id/login_text_or"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/login_forgot_top_margin"
+                    android:gravity="center"
+                    android:text="@string/or"
+                    android:textColor="@color/color_white"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/login_forgot_password" />
+
+
+                <ImageView
+                    android:id="@+id/login_apple"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:layout_marginTop="@dimen/social_button_margin_top"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toStartOf="@id/login_facebook"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/login_text_or"
+                    app:srcCompat="@drawable/ic_apple" />
+
+                <ImageView
+                    android:id="@+id/login_facebook"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toStartOf="@id/login_google"
+                    app:layout_constraintStart_toEndOf="@id/login_apple"
+                    app:layout_constraintTop_toTopOf="@+id/login_apple"
+                    app:srcCompat="@drawable/ic_facebook" />
+
+                <ImageView
+                    android:id="@+id/login_google"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/login_facebook"
+                    app:layout_constraintTop_toTopOf="@+id/login_apple"
+                    app:srcCompat="@drawable/ic_google" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/layout_view_back"
+            app:backListener="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

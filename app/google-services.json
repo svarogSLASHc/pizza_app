@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "63636678056",
+    "firebase_url": "https://pizzaapp-cdd62.firebaseio.com",
+    "project_id": "pizzaapp-cdd62",
+    "storage_bucket": "pizzaapp-cdd62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63636678056:android:27311abb593b1e9a33699d",
+        "android_client_info": {
+          "package_name": "com.treewall.av.pizzaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63636678056-i7ba9v5q3mrjup8lkhump23ka8de8jv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.treewall.av.pizzaapp",
+            "certificate_hash": "578afca2a46e35f10da207c80f4aa6bf8a925375"
+          }
+        },
+        {
+          "client_id": "63636678056-v4c7d5sb1cs34lkggdlo13kqh8qo50an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFTxxz79m7i5V3FgiCWCgAQJE7azvXVKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63636678056-v4c7d5sb1cs34lkggdlo13kqh8qo50an.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "63636678056-jnuej8mg1epho67rq1k023ncfgb14olo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "TreeWall.PizzaApp.Dev.II"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

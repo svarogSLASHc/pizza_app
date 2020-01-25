@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.treewall.av.pizzaapp.presentation.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:paddingStart="@dimen/space_single"
+                android:paddingEnd="@dimen/space_single"
+                android:paddingBottom="@dimen/register_bottom_padding">
+
+                <ImageView
+                    android:id="@+id/register_logo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/welcome_space_logo_top"
+                    android:adjustViewBounds="true"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.58"
+                    app:srcCompat="@drawable/ic_pizza_main" />
+
+                <TextView
+                    android:id="@+id/register_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_description"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/welcome_description_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/register_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_user_name"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/auth_text_field_side_space"
+                    android:layout_marginTop="@dimen/register_name_margin"
+                    android:layout_marginEnd="@dimen/auth_text_field_side_space"
+                    android:hint="@string/name"
+                    app:errorRes="@{viewModel.nameError}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/register_about">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_name"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_email"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:hint="@string/email"
+                    app:errorRes="@{viewModel.emailError}"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/register_user_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_mail"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_password"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:hint="@string/password"
+                    app:errorRes="@{viewModel.passwordError}"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/register_email"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/color_white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_confirm_password"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:hint="@string/confirm_password"
+                    app:errorRes="@{viewModel.confirmPasswordError}"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/register_password"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/color_white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confirmPassword"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/btn_register"
+                    style="@style/WelcomeButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/register_btn"
+                    android:layout_marginTop="@dimen/input_text_start_margin"
+                    android:background="@drawable/welcome_btn_bg_white"
+                    android:onClick="@{() -> viewModel.register(name.getText().toString(), email.getText().toString(), password.getText().toString(), confirmPassword.getText().toString())}"
+                    android:text="@string/welcome_to_sign_up"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/auth_button_text_size"
+                    android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/register_confirm_password" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="@dimen/progress_bar_size"
+                    android:layout_height="@dimen/progress_bar_size"
+                    android:layout_marginTop="@dimen/input_text_start_margin"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@android:color/white"
+                    android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/register_confirm_password" />
+
+                <TextView
+                    android:id="@+id/tv_register_or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/register_or_margin"
+                    android:gravity="center"
+                    android:text="@string/or"
+                    android:textColor="@color/color_white"
+                    app:layout_constraintEnd_toEndOf="@id/register_user_name"
+                    app:layout_constraintStart_toStartOf="@id/register_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+                <ImageView
+                    android:id="@+id/login_apple"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:layout_marginTop="@dimen/social_button_margin_top"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toStartOf="@id/login_facebook"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_register_or"
+                    app:srcCompat="@drawable/ic_apple" />
+
+                <ImageView
+                    android:id="@+id/login_facebook"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toStartOf="@id/login_google"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/login_apple"
+                    app:layout_constraintTop_toTopOf="@+id/login_apple"
+                    app:srcCompat="@drawable/ic_facebook" />
+
+                <ImageView
+                    android:id="@+id/login_google"
+                    android:layout_width="@dimen/social_button_width"
+                    android:layout_height="@dimen/social_button_height"
+                    android:scaleType="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/login_facebook"
+                    app:layout_constraintTop_toTopOf="@+id/login_apple"
+                    app:srcCompat="@drawable/ic_google" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="btn_register,progress" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/layout_view_back"
+            app:backListener="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

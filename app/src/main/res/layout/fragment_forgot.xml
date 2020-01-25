@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.treewall.av.pizzaapp.presentation.forgot_password.ForgotPasswordViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/space_single"
+                android:paddingEnd="@dimen/space_single"
+                android:paddingBottom="54dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/auth_text_field_side_space" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/auth_text_field_side_space" />
+
+                <ImageView
+                    android:id="@+id/welcome_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="236dp"
+                    android:layout_marginTop="24dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_pizza_main" />
+
+
+                <TextView
+                    android:id="@+id/welcome_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_description"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/welcome_description_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/welcome_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/forgot_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    android:gravity="left"
+                    android:paddingStart="45dp"
+                    android:paddingEnd="45dp"
+                    android:text="@string/forgot_description"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/welcome_description_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/welcome_about" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email_line"
+                    style="@style/PizzaTextInputLayoutStyle"
+                    android:layout_marginTop="56dp"
+                    android:hint="@string/email"
+                    app:errorRes="@{viewModel.emailError}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/forgot_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        style="@style/PizzaTextInputTextStyle"
+                        android:drawableStart="@drawable/ic_mail"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/forgot_password"
+                    style="@style/WelcomeButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="56dp"
+                    android:background="@drawable/welcome_btn_bg_white"
+                    android:onClick="@{() -> viewModel.reset(email.getText().toString())}"
+                    android:text="@string/forgot_btn_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/auth_button_text_size"
+                    android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/email_line" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="@dimen/progress_bar_size"
+                    android:layout_height="@dimen/progress_bar_size"
+                    android:layout_marginTop="56dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@android:color/white"
+                    android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/email_line" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/layout_view_back"
+            app:backListener="@{viewModel}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
