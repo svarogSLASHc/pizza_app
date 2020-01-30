@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="23dp"
+            app:data="@{viewModel.productList}"
             android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

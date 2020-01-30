@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.treewall.av.pizzaapp.databinding.FragmentProductListBinding
@@ -21,28 +20,25 @@ class ProductListFragment : BaseFragment<ProductListViewModel>(ProductListViewMo
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentProductListBinding.inflate(inflater, container, false)
-            .also {
-                it.viewModel = viewModel
-                it.lifecycleOwner = viewLifecycleOwner
-            }
-        return binding.root
-    }
+    ) = FragmentProductListBinding.inflate(inflater, container, false).also {
+        binding = it
+        it.viewModel = viewModel
+        it.lifecycleOwner = viewLifecycleOwner
+    }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val snapHelper = LinearSnapHelper()
+        val snapHelper = LinearSnapHelper();
         binding.productList.apply {
             adapter = productAdapter
-            layoutManager = CenterLayout(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            snapHelper.attachToRecyclerView(this)
+            layoutManager =
+                CenterLayout(
+                    requireContext(),
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+            snapHelper.attachToRecyclerView(this);
             addItemDecoration(CirclePagerIndicatorDecoration())
         }
-        viewModel.productList.observe(
-            viewLifecycleOwner,
-            Observer { data ->
-                productAdapter.setItems(data)
-            })
     }
 }

@@ -1,11 +1,14 @@
-package com.treewall.av.pizzaapp.presentation.login
+package com.treewall.av.pizzaapp.utils
 
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
+import com.treewall.av.pizzaapp.presentation.base.list.ListAdapter
+import com.treewall.av.pizzaapp.presentation.base.list.ListItem
 
 
 @BindingAdapter("app:errorRes")
@@ -26,4 +29,13 @@ fun loadImage(view: ImageView, imageUrl: String) {
         .load(imageUrl)
         .placeholder(com.treewall.av.pizzaapp.R.drawable.ic_pizza_main)
         .into(view)
+}
+
+@BindingAdapter("data")
+fun <T : ListItem> setRecyclerViewProperties(recyclerView: RecyclerView, data: List<T>?) {
+    if (recyclerView.adapter is ListAdapter<*>) {
+        data?.apply {
+            (recyclerView.adapter as ListAdapter<T>).setItems(this)
+        }
+    }
 }
